@@ -21,6 +21,9 @@ var hasWon = false;
 // function to play again
 function playAgain(parameter) {
     if (parameter == 3) {
+        document.getElementById("buttonOne").style.visibility = "visible";
+        document.getElementById("buttonTwo").style.visibility = "visible";
+        document.getElementById("buttonThree").style.visibility = "visible";
         drawWinner();
     } else if (parameter == 4) {
         if (!hasWon) {
@@ -37,6 +40,9 @@ function playAgain(parameter) {
 function checkWinner(x) {
     if (x == winner) {
         document.getElementById("result").innerHTML = "You clicked the lucky button! Play again?"
+        document.getElementById("buttonOne").style.visibility = "hidden";
+        document.getElementById("buttonTwo").style.visibility = "hidden";
+        document.getElementById("buttonThree").style.visibility = "hidden";
         document.getElementById("result").style.visibility = "visible";
         document.getElementById("YES").style.visibility = "visible";
         document.getElementById("NO").style.visibility = "visible";
@@ -44,6 +50,9 @@ function checkWinner(x) {
         playAgain();
     } else {
         document.getElementById("result").innerHTML = "You missed! Play again?"
+        document.getElementById("buttonOne").style.visibility = "hidden";
+        document.getElementById("buttonTwo").style.visibility = "hidden";
+        document.getElementById("buttonThree").style.visibility = "hidden";
         document.getElementById("result").style.visibility = "visible";
         document.getElementById("YES").style.visibility = "visible";
         document.getElementById("NO").style.visibility = "visible";
