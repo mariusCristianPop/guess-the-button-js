@@ -48,11 +48,19 @@ function showResult(parameter) {
     divElem.setAttribute('style', 'text-align:center;');
     divElem.setAttribute('name', 'resultDiv');
     if (parameter == 1) {
-        var textNode = document.createTextNode("You clicked the lucky button!"); 
+        var textNode = document.createTextNode("You clicked the lucky button!");
+        hideButtons();
     } else {
-        var textNode = document.createTextNode("You missed!"); 
+        var textNode = document.createTextNode("You missed!");
+        hideButtons(); 
     }
     divElem.appendChild(textNode);
     document.body.appendChild(divElem);
          
+}
+
+function hideButtons() {
+    for (let i = 0; i < 3; ++i) {
+        document.getElementById(i).style.visibility = "hidden"; 
+    }
 }
