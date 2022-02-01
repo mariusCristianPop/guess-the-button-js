@@ -1,63 +1,44 @@
-// On document load the function that draws the winner is selected. 
-let winner = -1;
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("result").style.visibility = "hidden";
-    document.getElementById("YES").style.visibility = "hidden";
-    document.getElementById("NO").style.visibility = "hidden";
+    createButton();
     drawWinner();
 });
 
-// function to randomly choose the winner
-function drawWinner() {
-    winner = Math.random(0, 2).toFixed();
-    hasWon = false;
-    console.log("The winner is " + winner); // left here on purpose for debugging reasons
-    document.getElementById("result").style.visibility = "hidden";
-    document.getElementById("YES").style.visibility = "hidden";
-    document.getElementById("NO").style.visibility = "hidden";
+// creating the button template;
+function configButton(text, id) {
+    var btn = document.createElement("button");
+    btn.innerHTML = text;
+    btn.id = id;
+    btn.type = "Submit";
+    btn.onclick = function () {
+        checkWinner(id);
+      };
+    return btn;
 }
 
-var hasWon = false;
-// function to play again
-function playAgain(parameter) {
-    if (parameter == 3) {
-        document.getElementById("buttonOne").style.visibility = "visible";
-        document.getElementById("buttonTwo").style.visibility = "visible";
-        document.getElementById("buttonThree").style.visibility = "visible";
-        drawWinner();
-    } else if (parameter == 4) {
-        if (!hasWon) {
-            document.getElementById("result").innerHTML = "Only loosers quit when they are not winning!"
-        } else {
-            document.getElementById("result").innerHTML = "Thank you for playing!"
-        }
-        document.getElementById("YES").style.visibility = "hidden";
-        document.getElementById("NO").style.visibility = "hidden";
+// create the 3 buttons and append them to body
+function createButton() {
+    //creating the div 
+    var divElem = document.createElement('div');
+    divElem.setAttribute('style', 'text-align:center;');
+    divElem.setAttribute('name', 'buttonsDiv');
+    for (let i = 1; i < 4; ++i) {
+        divElem.appendChild(configButton("Button " + i, i));
+        document.body.appendChild(divElem);
+         
     }
 }
+// Decide wich ID won the game
+var winner = -1;
+function drawWinner() {
+    winner = Math.random(1, 3).toFixed();
+    console.log("The winner is " + winner); // left here on purpose for debugging reasons
+}
 
-//function to show the user if he had clicked the correct button and play again yes or no buttons. 
+// Check if the user clicked on the winning button
 function checkWinner(x) {
     if (x == winner) {
-        document.getElementById("result").innerHTML = "You clicked the lucky button! Play again?"
-        document.getElementById("buttonOne").style.visibility = "hidden";
-        document.getElementById("buttonTwo").style.visibility = "hidden";
-        document.getElementById("buttonThree").style.visibility = "hidden";
-        document.getElementById("result").style.visibility = "visible";
-        document.getElementById("YES").style.visibility = "visible";
-        document.getElementById("NO").style.visibility = "visible";
-        hasWon = true;
-        playAgain();
+        console.log("You rock! Congratulations!");
     } else {
-        document.getElementById("result").innerHTML = "You missed! Play again?"
-        document.getElementById("buttonOne").style.visibility = "hidden";
-        document.getElementById("buttonTwo").style.visibility = "hidden";
-        document.getElementById("buttonThree").style.visibility = "hidden";
-        document.getElementById("result").style.visibility = "visible";
-        document.getElementById("YES").style.visibility = "visible";
-        document.getElementById("NO").style.visibility = "visible";
-        hasWon = false;
-        playAgain();
+        console.log("You missed!");
     }
-
 }
