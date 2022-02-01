@@ -21,8 +21,8 @@ function createButton() {
     var divElem = document.createElement('div');
     divElem.setAttribute('style', 'text-align:center;');
     divElem.setAttribute('name', 'buttonsDiv');
-    for (let i = 1; i < 4; ++i) {
-        divElem.appendChild(configButton("Button " + i, i));
+    for (let i = 0; i < 3; ++i) {
+        divElem.appendChild(configButton("Button " + (i + 1), i));
         document.body.appendChild(divElem);
          
     }
@@ -30,15 +30,29 @@ function createButton() {
 // Decide wich ID won the game
 var winner = -1;
 function drawWinner() {
-    winner = Math.random(1, 3).toFixed();
+    winner = Math.random(0, 2).toFixed();
     console.log("The winner is " + winner); // left here on purpose for debugging reasons
 }
 
 // Check if the user clicked on the winning button
 function checkWinner(x) {
     if (x == winner) {
-        console.log("You rock! Congratulations!");
+       showResult(1);
     } else {
-        console.log("You missed!");
+        showResult(0);
     }
+}
+
+function showResult(parameter) {
+    var divElem = document.createElement('p');
+    divElem.setAttribute('style', 'text-align:center;');
+    divElem.setAttribute('name', 'resultDiv');
+    if (parameter == 1) {
+        var textNode = document.createTextNode("You clicked the lucky button!"); 
+    } else {
+        var textNode = document.createTextNode("You missed!"); 
+    }
+    divElem.appendChild(textNode);
+    document.body.appendChild(divElem);
+         
 }
