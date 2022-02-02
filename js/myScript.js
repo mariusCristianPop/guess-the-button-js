@@ -18,7 +18,7 @@ function createButtons() {
 // Decide wich ID won the game
 var winner = -1;
 function drawWinner() {
-    winner = Math.random(0, 2).toFixed();
+    winner = Math.floor(Math.random() * 3);
     console.log("The winner is " + winner); // left here on purpose for debugging reasons
 }
 
