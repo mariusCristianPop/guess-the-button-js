@@ -1,30 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
-    createButton();
+    createButtons();
     drawWinner();
 });
 
-// creating the button template;
-function configButton(text, id) {
-    var btn = document.createElement("button");
-    btn.innerHTML = text;
-    btn.id = id;
-    btn.type = "Submit";
-    btn.onclick = function () {
-        checkWinner(id);
-      };
-    return btn;
-}
-
 // create the 3 buttons and append them to body
-function createButton() {
-    //creating the div 
-    var divElem = document.createElement('div');
-    divElem.setAttribute('style', 'text-align:center;');
-    divElem.setAttribute('name', 'buttonsDiv');
+function createButtons() {
+    var myDiv = document.getElementById("buttonsDiv");
     for (let i = 0; i < 3; ++i) {
-        divElem.appendChild(configButton("Button " + (i + 1), i));
-        document.body.appendChild(divElem);
-         
+        var button = document.createElement('button');
+        button.innerHTML = "Button " + (i + 1);
+        button.id = i;
+        button.type = "submit"
+        button.setAttribute("onclick", `checkWinner(${i})`);
+        myDiv.appendChild(button);
     }
 }
 // Decide wich ID won the game
